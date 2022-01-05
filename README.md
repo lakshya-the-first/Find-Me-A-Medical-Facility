@@ -7,4 +7,4 @@ Technology used:
 
 How it worked:
 
-  A text file represented the input from the medical facilities. This included information such as their address, the services they provide, and the wait time for each of these services. Based on the services that the user required (and inputted), the system would calculate where they would received the quickest care. This system took into consideration the services required, their wait times, and the average travel time to the hospital based on the initial location of the user. 
+ Information from medical facilities was inputted into the system. This included information such as their address, the services they provide, and the wait time for each of these services. Based on the services that the user required (and inputted), the system would calculate where they would received the quickest care. This system took into consideration the services required, their wait times, and the average travel time to the hospital based on the initial location of the user, and how far the user was willing to travel. 

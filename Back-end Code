@@ -1,0 +1,178 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <sstream>
+#include <array>
+
+using namespace std;
+
+void intro();
+void input_info(string& address);
+
+class hospital_info{
+	public:
+		string h_name, h_address; float h_ETA, h_wait, h_total = h_wait + h_ETA;
+		
+		hospital_info();
+		hospital_info(string new_name, string new_addy, float new_ETA, float new_wait):
+			h_name(new_name), h_address(new_addy), h_ETA(new_ETA), h_wait(new_wait) {
+			}
+		void print();
+		void information();
+};
+
+void range(int& distance);
+
+void hospital_info::print(){
+	cout << "The hospitals within your radius are: " << endl << endl;
+	cout << h_name << " located at: " << h_address << endl;
+	cout << "The wait time for this hospital is " << h_wait << " hours" << endl;
+	cout << "The Estimated Travel Time is " << h_ETA << " hours" << endl;
+	cout << "The total time before you are helped is " << h_total << " hours " << endl;
+}
+
+int main(){
+	string address;
+	int distance;
+
+	intro();
+	input_info(address);
+	
+	hospital_info h1 ("Milton District Hospital", "725 Bronte St S, Milton, ON L9T 9K1", 0.5, 1.5);
+	hospital_info h2 ("Oakville Trafalgar Memorial Hospital",
+						"3001 Hospital Gate, Oakville, ON L6M 0L8", 0.75, 1.20);
+	hospital_info h3 ("McMaster's Children Hospital", "1200 Main St W, Hamilton, ON L8N 3Z5", 0.8, 1.1);
+	hospital_info h4 ("Trillium Health Partners - Credit Valley Hospital", 
+						"2200 Eglinton Ave W, Mississauga, ON L5M 2N1", 1.0, 1.25);
+	
+	range(distance);
+	
+	if (distance <= 10)
+		h1.print();
+		
+	else if(distance <= 20){
+		float min_dis = h1.h_ETA;
+		float total_min = h1.h_total;
+		
+		h1.print();
+		cout << endl << endl;
+		h2.print();
+		cout << endl << endl;
+		
+		if (h2.h_ETA < min_dis){
+			min_dis = h2.h_ETA;
+		}
+
+		if (h2.h_total < total_min){
+			total_min = h2.h_total;
+		}
+			
+		if (min_dis == h1.h_ETA)
+			cout << h1.h_name << " is the closest Hospital" << endl;
+		else if (min_dis == h2.h_ETA)
+			cout << h2.h_name << " is the closest Hospital" << endl;
+	
+		if (total_min == h1.h_total)
+			cout << "You will recieve the most immediate care at " << h1.h_name << endl;
+		else if (total_min == h2.h_total)
+			cout << "You will recieve the most immediate care at " << h2.h_name << endl;
+	}
+		
+	else if(distance <= 30){
+		float min_dis = h1.h_ETA;
+		float total_min = h1.h_total;
+		h1.print();
+			cout << endl << endl;
+		h2.print();
+			cout << endl << endl;
+		h3.print();
+			cout << endl << endl;
+		
+			if (h2.h_ETA < min_dis)
+				min_dis = h2.h_ETA;
+			if (h3.h_ETA < min_dis)
+				min_dis = h3.h_ETA;
+		
+			if (h2.h_total < total_min)
+				total_min = h2.h_total;
+			if (h3.h_total < total_min)
+				total_min = h3.h_total;
+				
+			if (min_dis == h1.h_ETA)
+				cout << h1.h_name << " is the closest Hospital" << endl;
+			else if (min_dis == h2.h_ETA)
+				cout << h2.h_name << " is the closest Hospital" << endl;
+			else if (min_dis == h3.h_ETA)
+				cout << h3.h_name << " is the closest Hospital" << endl;	
+			
+			if (total_min == h1.h_total)
+				cout << "You will recieve the most immediate care at " << h1.h_name << endl;
+			else if (total_min == h2.h_total)
+				cout << "You will recieve the most immediate care at " << h2.h_name << endl;
+			else if (total_min == h3.h_total)
+				cout << "You will recieve the most immediate care at " << h3.h_name << endl;
+	}
+	
+	else if(distance <= 40){
+		float min_dis = h1.h_ETA;
+		float total_min = h1.h_total;
+		h1.print();
+		cout << endl << endl;
+		h2.print();
+		cout << endl << endl;
+		h3.print();
+		cout << endl << endl;
+		h4.print();
+		cout << endl << endl;
+		
+		if (h2.h_ETA < min_dis)
+			min_dis = h2.h_ETA;
+		if (h3.h_ETA < min_dis)
+			min_dis = h3.h_ETA;
+		if (h4.h_ETA < min_dis)
+			min_dis = h4.h_ETA;
+		
+		if (h2.h_total < total_min)
+			total_min = h2.h_total;
+		if (h3.h_total < total_min)
+			total_min = h3.h_total;
+		if (h4.h_total < total_min)
+			total_min = h4.h_total;
+				
+		if (min_dis == h1.h_ETA)
+			cout << h1.h_name << " is the closest Hospital" << endl;
+		else if (min_dis == h2.h_ETA)
+			cout << h2.h_name << " is the closest Hospital" << endl;
+		else if (min_dis == h3.h_ETA)
+			cout << h3.h_name << " is the closest Hospital" << endl;
+		else if (min_dis == h4.h_ETA)
+			cout << h4.h_name << " is the closest Hospital" << endl;
+	
+		if (total_min == h1.h_total)
+			cout << "You will recieve the most immediate care at " << h1.h_name << endl;
+		else if (total_min == h2.h_total)
+			cout << "You will recieve the most immediate care at " << h2.h_name << endl;
+		else if (total_min == h3.h_total)
+			cout << "You will recieve the most immediate care at " << h3.h_name << endl;
+		else if (total_min == h4.h_total)
+			cout << "You will recieve the most immediate care at " << h4.h_name << endl;
+	}
+	return 0;
+}
+
+void intro(){
+	cout << "Welcome to Find-a-Hospital Information System" << endl << endl;
+	}
+	
+void input_info(string& address){
+	cout << "Please input your address ('Street Address' 'City' 'Province'): ";
+	getline(cin, address);	
+	cout << endl << "The address you entered is: " << address << endl << endl;
+}
+
+void range(int& distance){
+	cout << "What range are you looking for? (10km, 20km, 30km) ";
+	cin >> distance;
+	cout << endl;
+}
